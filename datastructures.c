@@ -223,10 +223,74 @@ struct node{
         int data;
         struct node*next;
 };
-void addatend(struct node *head,int data)
+void addatend(struct node **head,int data)
 {
   struct node *temp,*ptr;
-  temp=(struct node*)
+  temp=(struct node*)malloc(sizeof(struct node));
+  ptr=*head;
+  temp->data=data;
+  temp->next=NULL;
+  if(*head==NULL)
+  {
+    *head = temp;
+    return;
+  }
+  while(ptr->next!=NULL)
+  {
+    ptr=ptr->next;
+
+  }
+  ptr->next=temp;
+}
+void addatpos(struct node**head,int data,int pos)
+{
+    struct node *new=*head;
+    struct node *ptr2=malloc(sizeof(struct node));
+    ptr2->data=data;
+    ptr2->next=NULL;
+      if(pos == 1)
+    {
+        new->next = *head;
+        *head = new;
+        return;
+    }
+
+    struct node *ptr = *head;
+
+    for(int i = 1; i < pos - 1 && ptr != NULL; i++)
+    {
+        ptr = ptr->next;
+    }
+
+    ptr2->next=ptr->next;
+    ptr->next=ptr2;
+
+}
+void print(struct node *head)
+{
+    while(head!=NULL)
+    {
+        printf("%d ",head->data);
+        head=head->next;
+    }
+}
+int main()
+{
+    int n,m,id,pos;
+    struct node *head=NULL;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&id);
+        addatend(&head,id);
+    }
+    scanf("%d%d",&m,&pos);
+    addatpos(&head,m,pos);
+
+
+    print(head);
+}
+
   
   
  
