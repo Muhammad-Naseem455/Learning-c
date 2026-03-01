@@ -3,24 +3,39 @@
 struct node{
     int data;
     struct node*next;
+    struct node*prev;
 };
-void addatbegin(struct node**head,int data)
-{
+void addatend(struct node**head,int data){
     struct node*temp=(struct node*)malloc(sizeof(struct node));
     temp->data=data;
     temp->next=NULL;
-    temp->next=*head;
-    *head=temp;
-
+    temp->prev=NULL;
+    if(*head==NULL)
+    { 
+        *head=temp;
+        return; 
+    }
+    struct node*ptr=*head;
+    while(ptr->next!=NULL)
+    {
+        ptr=ptr->next;
+    }  
+    ptr->next=temp;
+    temp->prev=ptr;
 }
 void print(struct node*head)
 {
+    if(head==NULL)
+    {
+        printf("List is empty");
+    }
     while(head!=NULL)
     {
         printf("%d ",head->data);
         head=head->next;
     }
 }
+
 int main()
 {
     struct node*head=NULL;
@@ -29,7 +44,7 @@ int main()
     for(int i=0;i<n;i++)
     {
         scanf("%d",&val);
-        addatbegin(&head,val);
+        addatend(&head,val);
     }
     print(head);
 }

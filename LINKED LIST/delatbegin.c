@@ -21,6 +21,14 @@ void addatend(struct node**head,int data)
     }
     ptr->next=temp;
 }
+void delatbegin(struct node**head)
+{
+    struct node*temp=*head;
+    if(*head==NULL)
+      return;
+    *head=(*head)->next;
+    free(temp);
+}
 void print(struct node*head)
 {
     while(head!=NULL)
@@ -32,12 +40,20 @@ void print(struct node*head)
 int main()
 {
     struct node*head=NULL;
-    int n,val;
+    int n,val,pos,m;
     scanf("%d",&n);
     for(int i=0;i<n;i++)
     {
         scanf("%d",&val);
         addatend(&head,val);
+
+    }
+    scanf("%d",&m);
+    for(int i=0;i<m;i++)
+    {
+        delatbegin(&head);
     }
     print(head);
 }
+
+

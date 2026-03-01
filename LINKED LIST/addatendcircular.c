@@ -8,26 +8,35 @@ void addatend(struct node**head,int data)
 {
     struct node*temp=(struct node*)malloc(sizeof(struct node));
     temp->data=data;
-    temp->next=NULL;
+    
     if(*head==NULL)
     {
-         *head=temp;
-         return;
+        *head=temp;
+        temp->next=*head;
+        return;
     }
     struct node*ptr=*head;
-    while(ptr->next!=NULL)
+    while(ptr->next!=*head)
     {
         ptr=ptr->next;
     }
     ptr->next=temp;
+    temp->next=*head;
 }
 void print(struct node*head)
 {
-    while(head!=NULL)
+    if(head==NULL)
     {
-        printf("%d ",head->data);
-        head=head->next;
+        printf("List is empty");
+        return;
     }
+    struct node*ptr=head;
+    do
+    {
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
+    }
+    while(ptr!=head);
 }
 int main()
 {
