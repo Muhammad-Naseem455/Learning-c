@@ -290,6 +290,10 @@ int main()
 
     print(head);
 }
+//circular linked list
+//ptr_>next=tail->next;
+//tail->next=ptr
+//tail=tail->next
 
   
   

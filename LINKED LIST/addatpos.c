@@ -38,6 +38,7 @@ void addatpos(struct node**head,int pos,int data)
         if(ptr==NULL)
         {
             printf("positon out of range");
+            return;
         }
         ptr=ptr->next;
     }

@@ -22,6 +22,7 @@ void addAtEnd(struct node **head, int data) {
         ptr = ptr->next;
     }
 
+    
     ptr->next = temp;
     temp->next = *head;
 }
