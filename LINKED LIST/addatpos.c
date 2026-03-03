@@ -51,10 +51,11 @@ void addatpos(struct node**head,int pos,int data)
 }
 void print(struct node*head)
 {
-    while(head!=NULL)
+    struct node*ptr=head;
+    while(ptr!=NULL)
     {
-        printf("%d ",head->data);
-        head=head->next;
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
     }
 }
 int main()

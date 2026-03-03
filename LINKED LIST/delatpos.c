@@ -23,45 +23,51 @@ void addatend(struct node**head,int data)
 }
 void print(struct node*head)
 {
-    while(head!=NULL)
+    struct node*ptr=head;
+   
+    while(ptr!=NULL)
     {
-        printf("%d ",head->data);
-        head=head->next;
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
     }
 }
-void delatpos(struct node**head,int pos)
+int delatpos(struct node**head,int pos)
 {
     if(*head==NULL)
     {
-        printf("position out of range");
-        return;
+       
+        return -1;
     }
     struct node*temp=*head;
     if(pos==1)
     {
         *head=(*head)->next;
         free(temp);
-        return;
+        return 1;
     }
     struct node*ptr=*head;
     for(int i=1;i<pos-1&&ptr!=NULL;i++)
     {
+        
+
         ptr=ptr->next;
     }
     if(ptr==NULL||ptr->next==NULL)
     {
-        printf("position out of range");
-        return;
+       
+        return 0;
     }
     struct node*del=ptr->next;
     ptr->next=del->next;
     free(del);
 
+    return 1;
+
 }
 int main()
 {
     struct node*head=NULL;
-    int n,val,pos;
+    int n,val,pos,res;
     scanf("%d",&n);
     for(int i=0;i<n;i++)
     {
@@ -69,7 +75,16 @@ int main()
         addatend(&head,val);
     }
     scanf("%d",&pos);
-    delatpos(&head,pos);
-    print(head);
+    res=delatpos(&head,pos);
+    if(res==-1)
+    {
+        printf("List is empty");
+    }
+    else if(res==0)
+    {
+        printf("pos put");
+    }
+    else
+     print(head);
 
 }
